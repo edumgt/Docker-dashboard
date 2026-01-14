@@ -5,13 +5,6 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
-
-# ✅ 진단: index.html 위치 출력 (빌드 실패 안 하게)
-RUN echo "=== PWD ===" && pwd && \
-    echo "=== LS /app ===" && ls -al /app && \
-    echo "=== FIND index.html (maxdepth 6) ===" && find /app -maxdepth 6 -name "index.html" -print || true
-
-# (원래 빌드)
 RUN npm run build
 
 FROM nginx:1.27-alpine
