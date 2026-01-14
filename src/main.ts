@@ -1,4 +1,5 @@
-import ApexCharts, { ApexOptions } from "apexcharts";
+import ApexCharts from "apexcharts";
+import type { ApexOptions } from "apexcharts";
 
 // 샘플 데이터
 const data = [
@@ -15,7 +16,7 @@ const data = [
   { month: "11월", value: 400 },
   { month: "12월", value: 450 },
 ];
- 
+
 // 옵션 정의
 const options: ApexOptions = {
   chart: {
@@ -42,5 +43,8 @@ const options: ApexOptions = {
 };
 
 // 차트 렌더링
-const chart = new ApexCharts(document.querySelector("#chart"), options);
+const el = document.querySelector("#chart");
+if (!el) throw new Error("#chart element not found");
+
+const chart = new ApexCharts(el, options);
 chart.render();
